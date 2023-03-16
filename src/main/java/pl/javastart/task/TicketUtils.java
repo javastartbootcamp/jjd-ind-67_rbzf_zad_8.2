@@ -6,7 +6,7 @@ public class TicketUtils {
     private static final String STANDARD = "standardowy";
     private static final String GIFT = "prezentowy";
     private static final int LOGISTICSCOST = 5;
-    private static final double DISCOUNT = 0.5;
+    private static final double DISCOUNT = 0.05;
 
     double calculateFinalPrice(Ticket ticket) {
         double finalPrice = 0;
