@@ -5,35 +5,30 @@ public class TicketUtils {
     private static final String ONLINE = "internetowy";
     private static final String STANDARD = "standardowy";
     private static final String GIFT = "prezentowy";
+    private static final int LOGISTICSCOST = 5;
+    private static final double DISCOUNT = 0.5;
 
     double calculateFinalPrice(Ticket ticket) {
         double finalPrice = 0;
         switch (ticket.getType()) {
-            case ONLINE:
-                finalPrice = getDiscountPrice(ticket);
-                break;
-            case STANDARD:
-                finalPrice = getStandardFinalPrice(ticket);
-                break;
-            case GIFT:
-                finalPrice = getGiftFinalPrice(ticket);
-                break;
-            default:
-                System.out.println("Nie ma biletu takiego typu.");
+            case ONLINE -> finalPrice = getDiscountPrice(ticket);
+            case STANDARD -> finalPrice = getStandardFinalPrice(ticket);
+            case GIFT -> finalPrice = getGiftFinalPrice(ticket);
+            default -> System.out.println("Nie ma biletu takiego typu.");
         }
         return finalPrice;
     }
 
-    double getDiscountPrice(Ticket ticket) {
+    private double getDiscountPrice(Ticket ticket) {
         return ticket.getPrice() * (1 - ticket.getDiscount());
     }
 
-    double getStandardFinalPrice(Ticket ticket) {
-        return getDiscountPrice(ticket) + 5;
+    private double getStandardFinalPrice(Ticket ticket) {
+        return getDiscountPrice(ticket) + LOGISTICSCOST;
     }
 
-    double getGiftFinalPrice(Ticket ticket) {
-        return getStandardFinalPrice(ticket) + getDiscountPrice(ticket) * 0.05;
+    private double getGiftFinalPrice(Ticket ticket) {
+        return getStandardFinalPrice(ticket) + getDiscountPrice(ticket) * DISCOUNT;
     }
 
     public String getInfo(Ticket ticket) {

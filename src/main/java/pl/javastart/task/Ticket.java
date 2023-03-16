@@ -49,7 +49,11 @@ public class Ticket {
     }
 
     public void setType(String type) {
-        this.type = type;
+        if (type.equals("internetowy") || type.equals("standardowy") || type.equals("prezentowy")) {
+            this.type = type;
+        } else {
+            System.out.println("Nie mozna wystawic biletu");
+        }
     }
 
     public double getPrice() {
